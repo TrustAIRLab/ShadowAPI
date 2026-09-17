@@ -1,0 +1,34 @@
+AIME_PROMPT_TEMPLATE = """{question}
+Please reason step by step, and put your final answer within \\boxed{{}}.
+"""
+GPQA_PROMPT_TEMPLATE = """Answer the following multiple choice question. The last line of your response should be of the following format: 'ANSWER: $LETTER' (without quotes) where LETTER is one of {letters}. Think step by step before answering.
+
+{question}
+
+{choices}
+"""
+
+MEDQA_PROMPT_TEMPLATE = """{question}
+{choices}
+
+Answer with the option's first letter from the given choices directly.
+"""
+LEGALBENCH_PROMPT_TEMPLATE = """Given the following question presented in a court case, select the most relevant holding:
+
+Question: Can a defendant seek a new trial when a new prosecutor fails to abide by the terms of his predecessor’s plea agreement?
+Choices:
+0: "holding that a defendant must have \"sufficient awareness of the relevant circumstances and likely consequences\" of his guilty plea"
+1: "holding that the government must be held to a promise made to a defendant during plea negotiations if that promise induced the defendant's guilty plea"
+2: "holding that a guilty plea is an express waiver of the constitutional right to confrontation"
+3: "holding that for a plea to be valid, a defendant must be “aware of the nature of the charges against him, including the elements of the . . . charge to which he plead[s] guilty”"
+4: "holding that \"a defendant is obliged to show a reasonable probability that, but for the error, he would not have entered the [guilty] plea.\""
+Answer: 1
+
+Question: {question}
+Choices:
+0: {choice_0}
+1: {choice_1}
+2: {choice_2}
+3: {choice_3}
+4: {choice_4}
+Answer:"""

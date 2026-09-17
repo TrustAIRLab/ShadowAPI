@@ -1,0 +1,61 @@
+index,part,version,display_name,identifier,provider,num_parameters
+1,I,ChatGPT-3.5 (gpt-3.5-turbo-0125),ChatGPT-3.5,gpt-3.5-turbo-0125,OpenAI,
+2,I,ChatGPT-4  (gpt-4-turbo-2024-04-09),ChatGPT-4,gpt-4-turbo-2024-04-09,OpenAI,
+3,I,ChatGPT-4o (gpt-4o-2024-05-13),ChatGPT-4o,gpt-4o-2024-05-13,OpenAI,
+4,I,Claude 3 Haiku (claude-3-haiku-20240307),Claude 3 Haiku,claude-3-haiku-20240307,Anthropic,
+5,I,Claude 3 Opus (claude-3-opus-20240229),Claude 3 Opus,claude-3-opus-20240229,Anthropic,
+6,I,Claude 3.5 Sonnet (claude-3-5-sonnet-20240620),Claude 3.5 Sonnet,claude-3-5-sonnet-20240620,Anthropic,
+7,I,google/gemma-7b-it,google/gemma-7b-it,google/gemma-7b-it,Google,7B
+8,I,google/gemma-2b-it,google/gemma-2b-it,google/gemma-2b-it,Google,2B
+9,I,google/gemma-1.1-2b-it,google/gemma-1.1-2b-it,google/gemma-1.1-2b-it,Google,2B
+10,I,google/gemma-1.1-7b-it,google/gemma-1.1-7b-it,google/gemma-1.1-7b-it,Google,7B
+11,I,google/gemma-2-9b-it,google/gemma-2-9b-it,google/gemma-2-9b-it,Google,9B
+12,I,google/gemma-2-27b-it,google/gemma-2-27b-it,google/gemma-2-27b-it,Google,27B
+13,I,CohereForAI/aya-23-8B,CohereForAI/aya-23-8B,CohereForAI/aya-23-8B,Cohere,8B
+14,I,CohereForAI/aya-23-35B,CohereForAI/aya-23-35B,CohereForAI/aya-23-35B,Cohere,35B
+15,I,Deci/DeciLM-7B-instruct,Deci/DeciLM-7B-instruct,Deci/DeciLM-7B-instruct,Deci,7B
+16,I,Qwen/Qwen2-1.5B-Instruct,Qwen/Qwen2-1.5B-Instruct,Qwen/Qwen2-1.5B-Instruct,Qwen,1.5B
+17,I,Qwen/Qwen2-7B-Instruct,Qwen/Qwen2-7B-Instruct,Qwen/Qwen2-7B-Instruct,Qwen,7B
+18,I,Qwen/Qwen2-72B-Instruct,Qwen/Qwen2-72B-Instruct,Qwen/Qwen2-72B-Instruct,Qwen,72B
+19,I,gradientai/Llama-3-8B-Instruct-Gradient-1048k,gradientai/Llama-3-8B-Instruct-Gradient-1048k,gradientai/Llama-3-8B-Instruct-Gradient-1048k,Gradient AI,8B
+20,I,meta-llama/Llama-2-7b-chat-hf,meta-llama/Llama-2-7b-chat-hf,meta-llama/Llama-2-7b-chat-hf,Meta,7B
+21,I,meta-llama/Meta-Llama-3-8B-Instruct,meta-llama/Meta-Llama-3-8B-Instruct,meta-llama/Meta-Llama-3-8B-Instruct,Meta,8B
+22,I,meta-llama/Meta-Llama-3-70B-Instruct,meta-llama/Meta-Llama-3-70B-Instruct,meta-llama/Meta-Llama-3-70B-Instruct,Meta,70B
+23,I,meta-llama/Meta-Llama-3.1-8B-Instruct,meta-llama/Meta-Llama-3.1-8B-Instruct,meta-llama/Meta-Llama-3.1-8B-Instruct,Meta,8B
+24,I,meta-llama/Meta-Llama-3.1-70B-Instruct,meta-llama/Meta-Llama-3.1-70B-Instruct,meta-llama/Meta-Llama-3.1-70B-Instruct,Meta,70B
+25,I,microsoft/Phi-3-medium-128k-instruct,microsoft/Phi-3-medium-128k-instruct,microsoft/Phi-3-medium-128k-instruct,Microsoft,14B
+26,I,microsoft/Phi-3-medium-4k-instruct,microsoft/Phi-3-medium-4k-instruct,microsoft/Phi-3-medium-4k-instruct,Microsoft,14B
+27,I,microsoft/Phi-3-mini-128k-instruct,microsoft/Phi-3-mini-128k-instruct,microsoft/Phi-3-mini-128k-instruct,Microsoft,3.8B
+28,I,microsoft/Phi-3-mini-4k-instruct,microsoft/Phi-3-mini-4k-instruct,microsoft/Phi-3-mini-4k-instruct,Microsoft,3.8B
+29,I,mistralai/Mistral-7B-Instruct-v0.1,mistralai/Mistral-7B-Instruct-v0.1,mistralai/Mistral-7B-Instruct-v0.1,Mistral AI,7B
+30,I,mistralai/Mistral-7B-Instruct-v0.2,mistralai/Mistral-7B-Instruct-v0.2,mistralai/Mistral-7B-Instruct-v0.2,Mistral AI,7B
+31,I,mistralai/Mistral-7B-Instruct-v0.3,mistralai/Mistral-7B-Instruct-v0.3,mistralai/Mistral-7B-Instruct-v0.3,Mistral AI,7B
+32,I,mistralai/Mixtral-8x7B-Instruct-v0.1,mistralai/Mixtral-8x7B-Instruct-v0.1,mistralai/Mixtral-8x7B-Instruct-v0.1,Mistral AI,8x7B
+33,I,nvidia/Llama3-ChatQA-1.5-8B,nvidia/Llama3-ChatQA-1.5-8B,nvidia/Llama3-ChatQA-1.5-8B,NVIDIA,8B
+34,I,openchat/openchat-3.6-8b-20240522,openchat/openchat-3.6-8b-20240522,openchat/openchat-3.6-8b-20240522,OpenChat,8B
+35,I,openchat/openchat_3.5,openchat/openchat_3.5,openchat/openchat_3.5,OpenChat,7B
+36,I,togethercomputer/Llama-2-7B-32K-Instruct,togethercomputer/Llama-2-7B-32K-Instruct,togethercomputer/Llama-2-7B-32K-Instruct,Together AI,7B
+37,I,upstage/SOLAR-10.7B-Instruct-v1.0,upstage/SOLAR-10.7B-Instruct-v1.0,upstage/SOLAR-10.7B-Instruct-v1.0,Upstage AI,10.7B
+38,I,NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO,NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO,NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO,Nous Research,8x7B
+39,I,abacusai/Smaug-Llama-3-70B-Instruct,abacusai/Smaug-Llama-3-70B-Instruct,abacusai/Smaug-Llama-3-70B-Instruct,Abacus AI,70B
+40,I,microsoft/Phi-3.5-MoE-instruct,microsoft/Phi-3.5-MoE-instruct,microsoft/Phi-3.5-MoE-instruct,Microsoft,16x3.8B
+41,I,internlm/internlm2_5-7b-chat,internlm/internlm2_5-7b-chat,internlm/internlm2_5-7b-chat,InternLM,7B
+42,I,HuggingFaceH4/zephyr-7b-beta,HuggingFaceH4/zephyr-7b-beta,HuggingFaceH4/zephyr-7b-beta,HuggingFace,7B
+43,II,ChatGPT-4o (GPT-4o-mini-2024-07-18),ChatGPT-4o,GPT-4o-mini-2024-07-18,OpenAI,
+44,II,ChatGPT-5 (gpt-5-2025-08-07),ChatGPT-5,gpt-5-2025-08-07,OpenAI,
+45,II,ChatGPT-5-mini (gpt-5-mini-2025-08-07),ChatGPT-5-mini,gpt-5-mini-2025-08-07,OpenAI,
+46,II,google/gemini-2.0-flash,google/gemini-2.0-flash,google/gemini-2.0-flash,Google,
+47,II,google/gemini-2.5-flash,google/gemini-2.5-flash,google/gemini-2.5-flash,Google,
+48,II,google/gemini-2.5-pro,google/gemini-2.5-pro,google/gemini-2.5-pro,Google,
+49,II,MiniMaxAI/MiniMax-M2,MiniMaxAI/MiniMax-M2,MiniMaxAI/MiniMax-M2,MiniMaxAI,230B
+50,II,DeepSeek/deepseek-chat,DeepSeek/deepseek-chat,DeepSeek/deepseek-chat,DeepSeek,
+51,II,DeepSeek/deepseek-reasoner,DeepSeek/deepseek-reasoner,DeepSeek/deepseek-reasoner,DeepSeek,
+52,II,DeepSeek/deepseek-V3.2-exp-chat,DeepSeek/deepseek-V3.2-exp-chat,DeepSeek/deepseek-V3.2-exp-chat,DeepSeek,
+53,II,DeepSeek/DeepSeek-V3-0324,DeepSeek/DeepSeek-V3-0324,DeepSeek/DeepSeek-V3-0324,DeepSeek,
+54,II,Qwen/Qwen2.5-7B-Instruct,Qwen/Qwen2.5-7B-Instruct,Qwen/Qwen2.5-7B-Instruct,Qwen,7B
+55,II,Qwen/Qwen3-VL-32B-Instruct,Qwen/Qwen3-VL-32B-Instruct,Qwen/Qwen3-VL-32B-Instruct,Qwen,32B
+56,II,Qwen/Qwen3-8B,Qwen/Qwen3-8B,Qwen/Qwen3-8B,Qwen,8B
+57,II,DeepSeek/DeepSeek-R1-0528-Qwen3-8B,DeepSeek/DeepSeek-R1-0528-Qwen3-8B,DeepSeek/DeepSeek-R1-0528-Qwen3-8B,DeepSeek,8B
+58,II,ZhipuAI/glm-4-9b-chat,ZhipuAI/glm-4-9b-chat,ZhipuAI/glm-4-9b-chat,ZhipuAI,9B
+59,II,ZhipuAI/glm-Z1-9B-0414,ZhipuAI/glm-Z1-9B-0414,ZhipuAI/glm-Z1-9B-0414,ZhipuAI,9B
+60,II,MoonshotAI/Kimi-K2-Instruct-0905,MoonshotAI/Kimi-K2-Instruct-0905,MoonshotAI/Kimi-K2-Instruct-0905,MoonshotAI,1000B

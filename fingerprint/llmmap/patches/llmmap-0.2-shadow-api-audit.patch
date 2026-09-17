@@ -1,0 +1,257 @@
+--- a/LLMmap/llm.py
++++ b/LLMmap/llm.py
+@@ -20,23 +20,37 @@
+         tokenizer_only=False,
+     ):
+ 
+-        api_key = os.environ.get('HUGGINGFACE_API_KEY', None)
+-        if api_key is None:
+-            raise Exception(f'Missing HuggingFace APIs key. Export "HUGGINGFACE_API_KEY" in the enverioment and try again')
+-            
+-        self.llm_name = llm_name
++        # [shadow-api-audit] Open-weight models in the reference library are held
++        # locally (see reference/model_library.json). A local directory needs no
++        # Hugging Face token; for hub ids the token stays optional so that public
++        # weights can be fetched anonymously.
++        llm_path = os.path.abspath(os.path.expanduser(llm_name))
++        is_local_dir = os.path.isdir(llm_path)
++        if llm_name.startswith(('/', './', '../', '~')) and not is_local_dir:
++            raise FileNotFoundError(f'Local model path not found: {llm_path}')
++
++        self.llm_name = llm_path if is_local_dir else llm_name
+         self.model_class = model_class
+-        
+-        self.tokenizer = tokenizer_class.from_pretrained(llm_name, padding_side='left', token=api_key, legacy=False, **model_load_kargs)
+-        self.tokenizer.pad_token = self.tokenizer.eos_token            
++
++        load_kargs = dict(model_load_kargs)
++        if is_local_dir:
++            load_kargs.update(local_files_only=True, trust_remote_code=True)
++        else:
++            api_key = os.environ.get('HUGGINGFACE_API_KEY', None)
++            if api_key is not None:
++                load_kargs['token'] = api_key
++
++        self.tokenizer = tokenizer_class.from_pretrained(self.llm_name, padding_side='left', legacy=False, **load_kargs)
++        self.tokenizer.pad_token = self.tokenizer.eos_token
+         self.tokenizer.with_system_prompt = True
+-        
++
+         self.is_hf = True
+ 
+         self.model = None
+         if not tokenizer_only:
+-            self.model = model_class.from_pretrained(llm_name, token=api_key, **model_load_kargs)
+-            self.model.generation_config.pad_token_ids = self.tokenizer.pad_token_id
++            self.model = model_class.from_pretrained(self.llm_name, **load_kargs)
++            if getattr(self.model, 'generation_config', None) is not None:
++                self.model.generation_config.pad_token_ids = self.tokenizer.pad_token_id
+ 
+     @staticmethod
+     def _does_template_have_system(tokenizer):
+@@ -93,16 +107,30 @@
+ 
+ #####################################################################################################################
+ 
++# [shadow-api-audit] Model ids whose endpoints reject the sampling parameters of
++# the chat-completions API and expect `max_completion_tokens` instead of
++# `max_tokens`.
++REASONING_MODEL_MARKERS = ('o1-', 'o3-', 'gpt-5', 'reasoner', 'thinking')
++UNSUPPORTED_ON_REASONING_MODELS = (
++    'temperature', 'top_p', 'frequency_penalty', 'presence_penalty', 'logprobs',
++)
++
++
+ class LLM_OpenAI:
+-    def __init__(self, llm_name):
+-                
++    def __init__(self, llm_name, base_url=None):
++
+         api_key = os.environ.get('OPENAI_API_KEY', None)
+         if api_key is None:
+             raise Exception(f'Missing OpenAPI APIs key. Export "OPENAI_API_KEY" in the enverioment and try again')
+-        
+-        self.client = OpenAI(api_key=api_key)
++
++        # [shadow-api-audit] The audited endpoints are OpenAI-compatible but live
++        # on their own hosts; base_url selects which one is probed.
++        base_url = base_url or os.environ.get('OPENAI_BASE_URL', None)
++
++        self.client = OpenAI(api_key=api_key, base_url=base_url)
+         self.llm_name = llm_name
+-        
++        self.base_url = base_url
++
+         self.is_hf = False
+ 
+ 
+@@ -114,15 +142,27 @@
+         return messages
+ 
+ 
++    def _is_reasoning_model(self):
++        name = self.llm_name.lower()
++        return any(marker in name for marker in REASONING_MODEL_MARKERS)
++
+     def _convert_gen_kargs(self, gen_kargs):
++        gen_kargs = dict(gen_kargs)
++
+         if 'do_sample' in gen_kargs:
+             do_sample = gen_kargs.pop('do_sample')
+             if not do_sample:
+                 gen_kargs['temperature'] = 0
+ 
++        # [shadow-api-audit] Reasoning models reject the sampling parameters; the
++        # request fails with HTTP 400 rather than ignoring them.
++        if self._is_reasoning_model():
++            for param in UNSUPPORTED_ON_REASONING_MODELS:
++                gen_kargs.pop(param, None)
++
+         return gen_kargs
+ 
+-        
++
+     def generate(
+         self,
+         prompt,
+@@ -131,8 +171,16 @@
+     ):
+ 
+         gen_kargs = self._convert_gen_kargs(gen_kargs)
+-        gen_kargs['max_tokens'] = max_new_tokens
+-        
++
++        # [shadow-api-audit] max_new_tokens=None sends no cap. Reasoning models
++        # spend the completion budget on hidden thinking tokens, so a small cap
++        # returns an empty answer instead of a fingerprintable response.
++        gen_kargs.pop('max_tokens', None)
++        gen_kargs.pop('max_completion_tokens', None)
++        if max_new_tokens is not None:
++            key = 'max_completion_tokens' if self._is_reasoning_model() else 'max_tokens'
++            gen_kargs[key] = max_new_tokens
++
+         response = self.client.chat.completions.create(
+             model=self.llm_name,
+             messages=prompt,
+@@ -189,7 +237,7 @@
+         kargs['model_load_kargs'] = {'device_map':"auto", 'cache_dir':cache_dir, 'trust_remote_code':True}
+         llm = LLM_huggingface(llm_name, **kargs)
+     elif llm_type == 1:
+-        llm = LLM_OpenAI(llm_name)
++        llm = LLM_OpenAI(llm_name, **kargs)
+     elif llm_type == 2:
+         llm = LLM_Anthropic(llm_name)
+     else:
+--- a/LLMmap/inference.py
++++ b/LLMmap/inference.py
+@@ -62,7 +62,9 @@
+         raise RuntimeError(f"Failed to initialize InferenceModelLLMmap: {e}")
+ 
+     try:
+-        net.load_state_dict(torch.load(model_path))
++        # [shadow-api-audit] map_location lets the released checkpoint load on a
++        # machine without the accelerator it was trained on.
++        net.load_state_dict(torch.load(model_path, map_location=torch.device(device)))
+     except Exception as e:
+         raise RuntimeError(f"Failed to load model state from {model_path}: {e}")
+ 
+@@ -115,6 +117,13 @@
+         return output
+         
+     def _preprocess_answers(self, out):
++        # [shadow-api-audit] An audited endpoint may answer with a null content
++        # field (refusal, truncation, upstream error). Treat it as an empty
++        # answer instead of raising, so the probe still yields a trace.
++        if out is None:
++            out = ''
++        elif not isinstance(out, str):
++            out = str(out)
+         return out[:self.conf['max_number_chars_response']]
+                 
+ class InferenceModel_closed(InferenceModel):
+--- a/LLMmap/dataset_maker.py
++++ b/LLMmap/dataset_maker.py
+@@ -1,3 +1,4 @@
++import os
+ import tqdm
+ import json
+ import random 
+@@ -29,15 +30,44 @@
+     return train, test
+ 
+ 
+-def make_dataset_entries_for_new_llm(llm, queries, prompt_confs, pool=TRAIN):
+-    entries = []
++def make_dataset_entries_for_new_llm(llm, queries, prompt_confs, pool=TRAIN, checkpoint_dir='.'):
++    # [shadow-api-audit] Adding one library model costs len(prompt_confs) x
++    # len(queries) API calls (800 at the defaults). Completed prompt
++    # configurations are appended to a checkpoint file and skipped on a rerun, so
++    # a rate limit or a dropped connection does not restart the whole model.
++    checkpoint_file = os.path.join(
++        checkpoint_dir, f"checkpoint_{llm.llm_name.replace('/', '_')}_{pool}.jsonl"
++    )
++    os.makedirs(os.path.dirname(os.path.abspath(checkpoint_file)), exist_ok=True)
++
++    entries, done = [], set()
++    if os.path.exists(checkpoint_file):
++        with open(checkpoint_file, encoding='utf-8') as f:
++            for line in f:
++                if not line.strip():
++                    continue
++                entry = json.loads(line)
++                entries.append(entry)
++                done.add(json.dumps(entry['prompt_conf'], sort_keys=True))
++        print(f'[resume] {len(entries)} prompt configurations already collected in {checkpoint_file}')
++
+     for prompt_conf in tqdm.tqdm(prompt_confs):
+-        entry = {'dataset':pool, 'llm': llm.llm_name, 'traces': [], 'prompt_conf': prompt_conf.to_dict()}
++        conf_dict = prompt_conf.to_dict()
++        if json.dumps(conf_dict, sort_keys=True) in done:
++            continue
++
++        entry = {'dataset':pool, 'llm': llm.llm_name, 'traces': [], 'prompt_conf': conf_dict}
+         for query in queries:
+             prompt, sample_params = prompt_conf(query, llm)
+-            o = llm.generate(prompt, sample_params)[0]
++            # max_new_tokens=None: no completion cap, see LLM_OpenAI.generate.
++            o = llm.generate(prompt, sample_params, max_new_tokens=None)[0]
+             entry['traces'].append((query, o))
++
++        # Only complete entries are checkpointed.
+         entries.append(entry)
++        with open(checkpoint_file, 'a', encoding='utf-8') as f:
++            f.write(json.dumps(entry, ensure_ascii=False) + '\n')
++
+     return entries
+ 
+ class DatasetMaker:
+--- a/add_new_template.py
++++ b/add_new_template.py
+@@ -1,4 +1,5 @@
+ import argparse
++import os
+ import sys
+ import tqdm
+ 
+@@ -29,11 +30,19 @@
+         print("No templates found for the model. Aborting...")
+         sys.exit(1)
+ 
+-    if args.new_llm_name in llmmap.templates_map:
+-        print(f"Template for {args.new_llm_name} has already be computed. Aborting...")
++    # [shadow-api-audit] A locally stored open-weight model is loaded by path but
++    # registered in the template file under its model name, so that the template
++    # key stays machine independent.
++    template_name = args.new_llm_name
++    if args.new_llm_type == 0 and os.path.isdir(os.path.expanduser(args.new_llm_name)):
++        template_name = os.path.basename(os.path.normpath(os.path.abspath(os.path.expanduser(args.new_llm_name))))
++
++    if template_name in llmmap.templates_map:
++        print(f"Template for {template_name} has already be computed. Aborting...")
+         sys.exit(1)
+ 
+     new_llm = load_llm(args.new_llm_name, args.new_llm_type)
++    new_llm.llm_name = template_name
+     pc = PromptConfFactory(args.prompt_conf_path)
+     prompt_confs = pc.sample(args.num_prompt_confs, pool=TRAIN)
+ 

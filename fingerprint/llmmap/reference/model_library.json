@@ -1,0 +1,561 @@
+{
+  "schema": "shadow-api-audit/llmmap-model-library/v1",
+  "description": "Reference library of LLMs used to train and test LLMmap for the shadow API audit. Part I is the model set released with upstream LLMmap; Part II is the set we added for this paper. Reproduced verbatim from the paper appendix 'LLMs Used for Training LLMmap' (table:models).",
+  "upstream": "https://github.com/pasquini-dario/LLMmap",
+  "counts": {
+    "total": 60,
+    "part_I_upstream": 42,
+    "part_II": 18
+  },
+  "fields": {
+    "index": "row number in the paper table",
+    "part": "I = upstream baseline library, II = added for this paper",
+    "version": "the paper's Version column, verbatim",
+    "display_name": "version with the parenthesised identifier removed",
+    "identifier": "the paper's model identifier: the parenthesised model id where the paper prints one, else the Version string.",
+    "provider": "the paper's Provider column",
+    "num_parameters": "the paper's Number of Parameters column; null where the paper prints '/'"
+  },
+  "models": [
+    {
+      "index": 1,
+      "part": "I",
+      "version": "ChatGPT-3.5 (gpt-3.5-turbo-0125)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "gpt-3.5-turbo-0125",
+      "display_name": "ChatGPT-3.5"
+    },
+    {
+      "index": 2,
+      "part": "I",
+      "version": "ChatGPT-4  (gpt-4-turbo-2024-04-09)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "gpt-4-turbo-2024-04-09",
+      "display_name": "ChatGPT-4"
+    },
+    {
+      "index": 3,
+      "part": "I",
+      "version": "ChatGPT-4o (gpt-4o-2024-05-13)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "gpt-4o-2024-05-13",
+      "display_name": "ChatGPT-4o"
+    },
+    {
+      "index": 4,
+      "part": "I",
+      "version": "Claude 3 Haiku (claude-3-haiku-20240307)",
+      "provider": "Anthropic",
+      "num_parameters": null,
+      "identifier": "claude-3-haiku-20240307",
+      "display_name": "Claude 3 Haiku"
+    },
+    {
+      "index": 5,
+      "part": "I",
+      "version": "Claude 3 Opus (claude-3-opus-20240229)",
+      "provider": "Anthropic",
+      "num_parameters": null,
+      "identifier": "claude-3-opus-20240229",
+      "display_name": "Claude 3 Opus"
+    },
+    {
+      "index": 6,
+      "part": "I",
+      "version": "Claude 3.5 Sonnet (claude-3-5-sonnet-20240620)",
+      "provider": "Anthropic",
+      "num_parameters": null,
+      "identifier": "claude-3-5-sonnet-20240620",
+      "display_name": "Claude 3.5 Sonnet"
+    },
+    {
+      "index": 7,
+      "part": "I",
+      "version": "google/gemma-7b-it",
+      "provider": "Google",
+      "num_parameters": "7B",
+      "identifier": "google/gemma-7b-it",
+      "display_name": "google/gemma-7b-it"
+    },
+    {
+      "index": 8,
+      "part": "I",
+      "version": "google/gemma-2b-it",
+      "provider": "Google",
+      "num_parameters": "2B",
+      "identifier": "google/gemma-2b-it",
+      "display_name": "google/gemma-2b-it"
+    },
+    {
+      "index": 9,
+      "part": "I",
+      "version": "google/gemma-1.1-2b-it",
+      "provider": "Google",
+      "num_parameters": "2B",
+      "identifier": "google/gemma-1.1-2b-it",
+      "display_name": "google/gemma-1.1-2b-it"
+    },
+    {
+      "index": 10,
+      "part": "I",
+      "version": "google/gemma-1.1-7b-it",
+      "provider": "Google",
+      "num_parameters": "7B",
+      "identifier": "google/gemma-1.1-7b-it",
+      "display_name": "google/gemma-1.1-7b-it"
+    },
+    {
+      "index": 11,
+      "part": "I",
+      "version": "google/gemma-2-9b-it",
+      "provider": "Google",
+      "num_parameters": "9B",
+      "identifier": "google/gemma-2-9b-it",
+      "display_name": "google/gemma-2-9b-it"
+    },
+    {
+      "index": 12,
+      "part": "I",
+      "version": "google/gemma-2-27b-it",
+      "provider": "Google",
+      "num_parameters": "27B",
+      "identifier": "google/gemma-2-27b-it",
+      "display_name": "google/gemma-2-27b-it"
+    },
+    {
+      "index": 13,
+      "part": "I",
+      "version": "CohereForAI/aya-23-8B",
+      "provider": "Cohere",
+      "num_parameters": "8B",
+      "identifier": "CohereForAI/aya-23-8B",
+      "display_name": "CohereForAI/aya-23-8B"
+    },
+    {
+      "index": 14,
+      "part": "I",
+      "version": "CohereForAI/aya-23-35B",
+      "provider": "Cohere",
+      "num_parameters": "35B",
+      "identifier": "CohereForAI/aya-23-35B",
+      "display_name": "CohereForAI/aya-23-35B"
+    },
+    {
+      "index": 15,
+      "part": "I",
+      "version": "Deci/DeciLM-7B-instruct",
+      "provider": "Deci",
+      "num_parameters": "7B",
+      "identifier": "Deci/DeciLM-7B-instruct",
+      "display_name": "Deci/DeciLM-7B-instruct"
+    },
+    {
+      "index": 16,
+      "part": "I",
+      "version": "Qwen/Qwen2-1.5B-Instruct",
+      "provider": "Qwen",
+      "num_parameters": "1.5B",
+      "identifier": "Qwen/Qwen2-1.5B-Instruct",
+      "display_name": "Qwen/Qwen2-1.5B-Instruct"
+    },
+    {
+      "index": 17,
+      "part": "I",
+      "version": "Qwen/Qwen2-7B-Instruct",
+      "provider": "Qwen",
+      "num_parameters": "7B",
+      "identifier": "Qwen/Qwen2-7B-Instruct",
+      "display_name": "Qwen/Qwen2-7B-Instruct"
+    },
+    {
+      "index": 18,
+      "part": "I",
+      "version": "Qwen/Qwen2-72B-Instruct",
+      "provider": "Qwen",
+      "num_parameters": "72B",
+      "identifier": "Qwen/Qwen2-72B-Instruct",
+      "display_name": "Qwen/Qwen2-72B-Instruct"
+    },
+    {
+      "index": 19,
+      "part": "I",
+      "version": "gradientai/Llama-3-8B-Instruct-Gradient-1048k",
+      "provider": "Gradient AI",
+      "num_parameters": "8B",
+      "identifier": "gradientai/Llama-3-8B-Instruct-Gradient-1048k",
+      "display_name": "gradientai/Llama-3-8B-Instruct-Gradient-1048k"
+    },
+    {
+      "index": 20,
+      "part": "I",
+      "version": "meta-llama/Llama-2-7b-chat-hf",
+      "provider": "Meta",
+      "num_parameters": "7B",
+      "identifier": "meta-llama/Llama-2-7b-chat-hf",
+      "display_name": "meta-llama/Llama-2-7b-chat-hf"
+    },
+    {
+      "index": 21,
+      "part": "I",
+      "version": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "provider": "Meta",
+      "num_parameters": "8B",
+      "identifier": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "display_name": "meta-llama/Meta-Llama-3-8B-Instruct"
+    },
+    {
+      "index": 22,
+      "part": "I",
+      "version": "meta-llama/Meta-Llama-3-70B-Instruct",
+      "provider": "Meta",
+      "num_parameters": "70B",
+      "identifier": "meta-llama/Meta-Llama-3-70B-Instruct",
+      "display_name": "meta-llama/Meta-Llama-3-70B-Instruct"
+    },
+    {
+      "index": 23,
+      "part": "I",
+      "version": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "Meta",
+      "num_parameters": "8B",
+      "identifier": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "display_name": "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    },
+    {
+      "index": 24,
+      "part": "I",
+      "version": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "provider": "Meta",
+      "num_parameters": "70B",
+      "identifier": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+      "display_name": "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    },
+    {
+      "index": 25,
+      "part": "I",
+      "version": "microsoft/Phi-3-medium-128k-instruct",
+      "provider": "Microsoft",
+      "num_parameters": "14B",
+      "identifier": "microsoft/Phi-3-medium-128k-instruct",
+      "display_name": "microsoft/Phi-3-medium-128k-instruct"
+    },
+    {
+      "index": 26,
+      "part": "I",
+      "version": "microsoft/Phi-3-medium-4k-instruct",
+      "provider": "Microsoft",
+      "num_parameters": "14B",
+      "identifier": "microsoft/Phi-3-medium-4k-instruct",
+      "display_name": "microsoft/Phi-3-medium-4k-instruct"
+    },
+    {
+      "index": 27,
+      "part": "I",
+      "version": "microsoft/Phi-3-mini-128k-instruct",
+      "provider": "Microsoft",
+      "num_parameters": "3.8B",
+      "identifier": "microsoft/Phi-3-mini-128k-instruct",
+      "display_name": "microsoft/Phi-3-mini-128k-instruct"
+    },
+    {
+      "index": 28,
+      "part": "I",
+      "version": "microsoft/Phi-3-mini-4k-instruct",
+      "provider": "Microsoft",
+      "num_parameters": "3.8B",
+      "identifier": "microsoft/Phi-3-mini-4k-instruct",
+      "display_name": "microsoft/Phi-3-mini-4k-instruct"
+    },
+    {
+      "index": 29,
+      "part": "I",
+      "version": "mistralai/Mistral-7B-Instruct-v0.1",
+      "provider": "Mistral AI",
+      "num_parameters": "7B",
+      "identifier": "mistralai/Mistral-7B-Instruct-v0.1",
+      "display_name": "mistralai/Mistral-7B-Instruct-v0.1"
+    },
+    {
+      "index": 30,
+      "part": "I",
+      "version": "mistralai/Mistral-7B-Instruct-v0.2",
+      "provider": "Mistral AI",
+      "num_parameters": "7B",
+      "identifier": "mistralai/Mistral-7B-Instruct-v0.2",
+      "display_name": "mistralai/Mistral-7B-Instruct-v0.2"
+    },
+    {
+      "index": 31,
+      "part": "I",
+      "version": "mistralai/Mistral-7B-Instruct-v0.3",
+      "provider": "Mistral AI",
+      "num_parameters": "7B",
+      "identifier": "mistralai/Mistral-7B-Instruct-v0.3",
+      "display_name": "mistralai/Mistral-7B-Instruct-v0.3"
+    },
+    {
+      "index": 32,
+      "part": "I",
+      "version": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "provider": "Mistral AI",
+      "num_parameters": "8x7B",
+      "identifier": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "display_name": "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    },
+    {
+      "index": 33,
+      "part": "I",
+      "version": "nvidia/Llama3-ChatQA-1.5-8B",
+      "provider": "NVIDIA",
+      "num_parameters": "8B",
+      "identifier": "nvidia/Llama3-ChatQA-1.5-8B",
+      "display_name": "nvidia/Llama3-ChatQA-1.5-8B"
+    },
+    {
+      "index": 34,
+      "part": "I",
+      "version": "openchat/openchat-3.6-8b-20240522",
+      "provider": "OpenChat",
+      "num_parameters": "8B",
+      "identifier": "openchat/openchat-3.6-8b-20240522",
+      "display_name": "openchat/openchat-3.6-8b-20240522"
+    },
+    {
+      "index": 35,
+      "part": "I",
+      "version": "openchat/openchat_3.5",
+      "provider": "OpenChat",
+      "num_parameters": "7B",
+      "identifier": "openchat/openchat_3.5",
+      "display_name": "openchat/openchat_3.5"
+    },
+    {
+      "index": 36,
+      "part": "I",
+      "version": "togethercomputer/Llama-2-7B-32K-Instruct",
+      "provider": "Together AI",
+      "num_parameters": "7B",
+      "identifier": "togethercomputer/Llama-2-7B-32K-Instruct",
+      "display_name": "togethercomputer/Llama-2-7B-32K-Instruct"
+    },
+    {
+      "index": 37,
+      "part": "I",
+      "version": "upstage/SOLAR-10.7B-Instruct-v1.0",
+      "provider": "Upstage AI",
+      "num_parameters": "10.7B",
+      "identifier": "upstage/SOLAR-10.7B-Instruct-v1.0",
+      "display_name": "upstage/SOLAR-10.7B-Instruct-v1.0"
+    },
+    {
+      "index": 38,
+      "part": "I",
+      "version": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+      "provider": "Nous Research",
+      "num_parameters": "8x7B",
+      "identifier": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+      "display_name": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
+    },
+    {
+      "index": 39,
+      "part": "I",
+      "version": "abacusai/Smaug-Llama-3-70B-Instruct",
+      "provider": "Abacus AI",
+      "num_parameters": "70B",
+      "identifier": "abacusai/Smaug-Llama-3-70B-Instruct",
+      "display_name": "abacusai/Smaug-Llama-3-70B-Instruct"
+    },
+    {
+      "index": 40,
+      "part": "I",
+      "version": "microsoft/Phi-3.5-MoE-instruct",
+      "provider": "Microsoft",
+      "num_parameters": "16x3.8B",
+      "identifier": "microsoft/Phi-3.5-MoE-instruct",
+      "display_name": "microsoft/Phi-3.5-MoE-instruct"
+    },
+    {
+      "index": 41,
+      "part": "I",
+      "version": "internlm/internlm2_5-7b-chat",
+      "provider": "InternLM",
+      "num_parameters": "7B",
+      "identifier": "internlm/internlm2_5-7b-chat",
+      "display_name": "internlm/internlm2_5-7b-chat"
+    },
+    {
+      "index": 42,
+      "part": "I",
+      "version": "HuggingFaceH4/zephyr-7b-beta",
+      "provider": "HuggingFace",
+      "num_parameters": "7B",
+      "identifier": "HuggingFaceH4/zephyr-7b-beta",
+      "display_name": "HuggingFaceH4/zephyr-7b-beta"
+    },
+    {
+      "index": 43,
+      "part": "II",
+      "version": "ChatGPT-4o (GPT-4o-mini-2024-07-18)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "GPT-4o-mini-2024-07-18",
+      "display_name": "ChatGPT-4o"
+    },
+    {
+      "index": 44,
+      "part": "II",
+      "version": "ChatGPT-5 (gpt-5-2025-08-07)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "gpt-5-2025-08-07",
+      "display_name": "ChatGPT-5"
+    },
+    {
+      "index": 45,
+      "part": "II",
+      "version": "ChatGPT-5-mini (gpt-5-mini-2025-08-07)",
+      "provider": "OpenAI",
+      "num_parameters": null,
+      "identifier": "gpt-5-mini-2025-08-07",
+      "display_name": "ChatGPT-5-mini"
+    },
+    {
+      "index": 46,
+      "part": "II",
+      "version": "google/gemini-2.0-flash",
+      "provider": "Google",
+      "num_parameters": null,
+      "identifier": "google/gemini-2.0-flash",
+      "display_name": "google/gemini-2.0-flash"
+    },
+    {
+      "index": 47,
+      "part": "II",
+      "version": "google/gemini-2.5-flash",
+      "provider": "Google",
+      "num_parameters": null,
+      "identifier": "google/gemini-2.5-flash",
+      "display_name": "google/gemini-2.5-flash"
+    },
+    {
+      "index": 48,
+      "part": "II",
+      "version": "google/gemini-2.5-pro",
+      "provider": "Google",
+      "num_parameters": null,
+      "identifier": "google/gemini-2.5-pro",
+      "display_name": "google/gemini-2.5-pro"
+    },
+    {
+      "index": 49,
+      "part": "II",
+      "version": "MiniMaxAI/MiniMax-M2",
+      "provider": "MiniMaxAI",
+      "num_parameters": "230B",
+      "identifier": "MiniMaxAI/MiniMax-M2",
+      "display_name": "MiniMaxAI/MiniMax-M2"
+    },
+    {
+      "index": 50,
+      "part": "II",
+      "version": "DeepSeek/deepseek-chat",
+      "provider": "DeepSeek",
+      "num_parameters": null,
+      "identifier": "DeepSeek/deepseek-chat",
+      "display_name": "DeepSeek/deepseek-chat"
+    },
+    {
+      "index": 51,
+      "part": "II",
+      "version": "DeepSeek/deepseek-reasoner",
+      "provider": "DeepSeek",
+      "num_parameters": null,
+      "identifier": "DeepSeek/deepseek-reasoner",
+      "display_name": "DeepSeek/deepseek-reasoner"
+    },
+    {
+      "index": 52,
+      "part": "II",
+      "version": "DeepSeek/deepseek-V3.2-exp-chat",
+      "provider": "DeepSeek",
+      "num_parameters": null,
+      "identifier": "DeepSeek/deepseek-V3.2-exp-chat",
+      "display_name": "DeepSeek/deepseek-V3.2-exp-chat"
+    },
+    {
+      "index": 53,
+      "part": "II",
+      "version": "DeepSeek/DeepSeek-V3-0324",
+      "provider": "DeepSeek",
+      "num_parameters": null,
+      "identifier": "DeepSeek/DeepSeek-V3-0324",
+      "display_name": "DeepSeek/DeepSeek-V3-0324"
+    },
+    {
+      "index": 54,
+      "part": "II",
+      "version": "Qwen/Qwen2.5-7B-Instruct",
+      "provider": "Qwen",
+      "num_parameters": "7B",
+      "identifier": "Qwen/Qwen2.5-7B-Instruct",
+      "display_name": "Qwen/Qwen2.5-7B-Instruct"
+    },
+    {
+      "index": 55,
+      "part": "II",
+      "version": "Qwen/Qwen3-VL-32B-Instruct",
+      "provider": "Qwen",
+      "num_parameters": "32B",
+      "identifier": "Qwen/Qwen3-VL-32B-Instruct",
+      "display_name": "Qwen/Qwen3-VL-32B-Instruct"
+    },
+    {
+      "index": 56,
+      "part": "II",
+      "version": "Qwen/Qwen3-8B",
+      "provider": "Qwen",
+      "num_parameters": "8B",
+      "identifier": "Qwen/Qwen3-8B",
+      "display_name": "Qwen/Qwen3-8B"
+    },
+    {
+      "index": 57,
+      "part": "II",
+      "version": "DeepSeek/DeepSeek-R1-0528-Qwen3-8B",
+      "provider": "DeepSeek",
+      "num_parameters": "8B",
+      "identifier": "DeepSeek/DeepSeek-R1-0528-Qwen3-8B",
+      "display_name": "DeepSeek/DeepSeek-R1-0528-Qwen3-8B"
+    },
+    {
+      "index": 58,
+      "part": "II",
+      "version": "ZhipuAI/glm-4-9b-chat",
+      "provider": "ZhipuAI",
+      "num_parameters": "9B",
+      "identifier": "ZhipuAI/glm-4-9b-chat",
+      "display_name": "ZhipuAI/glm-4-9b-chat"
+    },
+    {
+      "index": 59,
+      "part": "II",
+      "version": "ZhipuAI/glm-Z1-9B-0414",
+      "provider": "ZhipuAI",
+      "num_parameters": "9B",
+      "identifier": "ZhipuAI/glm-Z1-9B-0414",
+      "display_name": "ZhipuAI/glm-Z1-9B-0414"
+    },
+    {
+      "index": 60,
+      "part": "II",
+      "version": "MoonshotAI/Kimi-K2-Instruct-0905",
+      "provider": "MoonshotAI",
+      "num_parameters": "1000B",
+      "identifier": "MoonshotAI/Kimi-K2-Instruct-0905",
+      "display_name": "MoonshotAI/Kimi-K2-Instruct-0905"
+    }
+  ]
+}

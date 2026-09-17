@@ -1,0 +1,39 @@
+# Collected responses. These are yours, not ours -- and the safety runs contain
+# real jailbreak prompts and real model completions. They must never be committed.
+# "out/" is the path the READMEs pass to --out and --output-root in their
+# examples, so it is ignored too; check any other path you choose with
+# `git check-ignore -v <path>` before committing.
+utility/output/
+safety/Result_Safety/
+fingerprint/met/output/
+fingerprint/llmmap/output/
+out/
+
+# Downloaded benchmark files (see utility/dataset/README.md for how to get them)
+utility/dataset/gpqa/gpqa_diamond.csv
+utility/dataset/MedQA/test_us.jsonl
+utility/dataset/LegalBench/scalr/test.tsv
+
+# Caches: the StrongREJECT judge templates and the JBB behaviour snapshot
+safety/cache/
+
+# Your own endpoint configuration -- it names the endpoint you are auditing
+endpoints.json
+
+# Comparison tables written by --csv. They carry your endpoint label and its
+# numbers, so they are ignored by default; commit one deliberately with
+# `git add -f` if you mean to.
+/*.csv
+/results/
+
+# NB: no bare "*.txt" rule. requirements.txt is the only .txt in the repo, and
+# ignoring it would break the first step of the README. The per-run transcripts
+# that run_eval.py writes live under utility/output/, already ignored above.
+
+checkpoint_*.jsonl
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.key
+.DS_Store

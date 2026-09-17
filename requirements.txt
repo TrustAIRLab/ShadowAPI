@@ -1,0 +1,12 @@
+openai>=1.0
+pandas>=1.3
+numpy>=1.21
+requests>=2.25
+tqdm>=4.60
+datasets>=2.0
+
+# The LLMmap fingerprinting module (fingerprint/llmmap/) additionally needs
+# torch, transformers and the rest of upstream LLMmap's requirements. Install
+# those from the LLMmap checkout itself:
+#     pip install -r ../LLMmap/requirements.txt
+# See fingerprint/llmmap/README_LLMmap.md. The other three modules do not need them.

@@ -1,0 +1,17 @@
+{
+  "official": {
+    "kind": "official"
+  },
+
+  "my-endpoint-1": {
+    "kind": "shadow",
+    "base_url": "https://REPLACE-WITH-YOUR-ENDPOINT/v1",
+    "api_key_env": "SHADOW_API_KEY",
+    "model_ids": {
+      "GPT-5": "REPLACE-WITH-THE-NAME-THIS-ENDPOINT-USES",
+      "GPT-5-Mini": "REPLACE-WITH-THE-NAME-THIS-ENDPOINT-USES",
+      "Gemini-2.5-Flash": "REPLACE-WITH-THE-NAME-THIS-ENDPOINT-USES",
+      "DeepSeek-V3.2-Chat": "REPLACE-WITH-THE-NAME-THIS-ENDPOINT-USES"
+    }
+  }
+}
