@@ -29,7 +29,7 @@ export SHADOW_API_KEY=...                     # the endpoint you audit
 
 ## Run
 
-Collect once per endpoint, then compare.
+One command per endpoint, each collecting 3 runs of the whole benchmark (`--num-runs`, default 3, minimum 2). One run per side is refused because it would not fail loudly — it makes Model Equality Testing report a false `Reject`. Then compare.
 
 ```bash
 python utility/run_eval.py --endpoint official --benchmark aime2025 --model GPT-5-Mini
